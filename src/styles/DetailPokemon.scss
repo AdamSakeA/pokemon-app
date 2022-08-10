@@ -1,0 +1,26 @@
+@import '../styles/root.scss';
+
+.detail-pages {
+    background: $background-linear;
+    .detail-pokemon {
+        display: flex;
+        flex-direction: column;
+        .head-detail {
+            display: flex;
+            align-items: flex-end;
+            gap: 30px;
+            color: white;
+            img {
+                width: 300px;
+            }
+            .desc-head-detail {
+                display: flex;
+                flex-direction: column;
+                .desc-detail {
+                    display: flex;
+                    gap:20px;
+                }
+            }
+        }
+    }
+}
