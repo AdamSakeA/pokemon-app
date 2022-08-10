@@ -1,0 +1,18 @@
+@import './root.scss';
+
+.navbar-container {
+    .Navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 0;
+        .link-navbar {
+            color: white;
+            font-size: $s20;
+        }
+    }
+    ul {
+        display: flex;
+        gap: 30px;
+    }
+}

@@ -1,0 +1,90 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+$background-linear: linear-gradient(236.77deg, #143F6B 11.18%, #754700 95.58%);
+$main-font: 'Poppins', sans-serif;
+$main-color: #143F6B;
+$secondary-color: #754700;
+
+$s15 : 0.938rem;
+$s20 : 1.25rem;
+$s50 : 3.125rem;
+$s30 : 1.875rem;
+
+%primary-btn {
+    padding: 10px 30px;
+    background-color: $main-color;
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    font-size: $s20;
+}
+
+@mixin placeholder-color ($color, $focus) {
+    &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+      color: $color;
+      &:focus{
+        outline: none;
+        &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+          color: $focus;
+        }
+      }
+    }
+    &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     color: $color;
+     opacity:  1;
+     &:focus{
+        outline: none;
+       &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+          color: $focus;
+          opacity:  1;
+       }
+     }
+    }
+    &::-moz-placeholder { /* Mozilla Firefox 19+ */
+     color: $color;
+     opacity:  1;
+     &:focus{
+        outline: none;
+       &::-moz-placeholder { /* Mozilla Firefox 19+ */
+          color: $focus;
+          opacity:  1;
+       }
+     }
+    }
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+     color: $color;
+     &:focus{
+        outline: none;
+       &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+          color: $focus;
+       }
+     }
+   }
+  }
+
+body {
+    font-family: $main-font;
+    animation: slider;
+    animation-duration: 5s;
+}
+
+button {
+    cursor: pointer;
+}
+
+.section {
+    margin-top: 100px;
+}
+
+.container {
+    max-width: 1240px;
+    margin: auto;
+}

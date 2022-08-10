@@ -1,0 +1,28 @@
+@import '../styles/root.scss';
+
+.Home {
+    background: $background-linear;
+    .home-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        .img-pikachu {
+            width: 400px;
+        }
+        .home-content-right {
+            color: white;
+            max-width: 80%;
+            h1 {
+                font-size: $s50;
+            }
+            p {
+                font-size: $s20;
+            }
+            .pokedex-btn{
+                @extend %primary-btn;
+                margin-top: 20px;
+            }
+        }
+    }
+}

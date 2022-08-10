@@ -1,0 +1,13 @@
+@import './root.scss';
+
+.section {
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: $s30;
+        font-weight: 300;
+        padding: 50px 0;
+    }
+}
