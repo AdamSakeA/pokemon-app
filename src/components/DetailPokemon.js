@@ -10,19 +10,21 @@ export default function DetailPokemon() {
     const [detailPokemon, setDetailPokemon] = useState([]);
 
     useEffect(() => {
-        getDetailPokemon()
-    }, [detailPokemon])
-
-    const getDetailPokemon = async() => {
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokedexName}/`);
-        try {
-            setDetailPokemon([response.data])
-        } catch (error) {
-            if(error.response) {
-                console.log(error.response.data)
-            }
+        const getDetailPokemon = async() => {
+            await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokedexName}/`)
+            .then(response => {
+                setDetailPokemon([response.data])
+            })
+            .catch(error => {
+                if(error) {
+                    console.log(error.response.data)
+                }
+            })
         }
-    }
+
+        getDetailPokemon()
+    }, [detailPokemon, pokedexName])
+
 
     return (
         <div className='detail-pages'>
