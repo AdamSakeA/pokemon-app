@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Pokedex.scss';
 import axios from "axios";
-import { useDispatch } from 'react-redux';
-import { update } from '../features/PokeSlice';
 import FilterPokedex from './FilterPokedex';
 import PokemonCards from './PokemonCards';
 import PokeCardSkeleton from './PokeCardSkeleton';
@@ -12,7 +10,6 @@ export default function PokeLists({ pokedex, pokemonSkillName }) {
     let offset = 0;
     const [pokemonAll, setPokemonAll] = useState([]);
     const [loading, setLoading] = useState(true);
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,12 +17,13 @@ export default function PokeLists({ pokedex, pokemonSkillName }) {
             await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=10`)
             .then((response) => {
                 response.data.results.forEach(item => getPokeForm(item.name));
+                setLoading(!loading)
             })
             .catch((error) => {
                 if (error.response) {
                     console.log(error.response.data);
                 }
-            });
+            })
             // eslint-disable-next-line react-hooks/exhaustive-deps
             offset += 10;
         }
@@ -33,7 +31,9 @@ export default function PokeLists({ pokedex, pokemonSkillName }) {
         const handleScroll = (e) => {
             if (window.innerHeight + e.target.documentElement.scrollTop + 1 >= e.target.documentElement.scrollHeight) {
                 setLoading(true)
-                getPokeList()
+                setTimeout(() => {
+                    getPokeList()
+                }, 1500);
             }
         }
 
@@ -44,7 +44,6 @@ export default function PokeLists({ pokedex, pokemonSkillName }) {
     const getPokeForm = async(name) => {
         await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
             .then((response) => {
-                setLoading(!loading)
                 setPokemonAll(currentData => [...currentData, response.data]);
             })
             .catch((error) => {
@@ -55,7 +54,6 @@ export default function PokeLists({ pokedex, pokemonSkillName }) {
     }
 
     const handleDetailPokemon = (name) => {
-        dispatch(update({pokedexName: name}))
         navigate(`/pokedex/${name}`)
     }
 
@@ -80,8 +78,7 @@ export default function PokeLists({ pokedex, pokemonSkillName }) {
 
     return (
         <div className='pokelist-contents container'>
-            {loading && <PokeCardSkeleton cards={10}/>}
-            {!loading && (pokemonSkillName.length === 0 && pokedex.length === 0) ? 
+            {pokemonSkillName.length === 0 && pokedex.length === 0 ? 
                 <PokemonResult /> : 
                 <FilterPokedex 
                     handleDetailPokemon={handleDetailPokemon} 
@@ -89,6 +86,7 @@ export default function PokeLists({ pokedex, pokemonSkillName }) {
                     pokemonSkillName={pokemonSkillName} 
                 />
             }
+            {loading && <PokeCardSkeleton cards={8}/>}
         </div>
     )
 }
