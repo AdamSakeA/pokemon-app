@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import axios from 'axios'
 import '../styles/DetailPokemon.scss'
+import { useParams } from 'react-router-dom'
 
-export default function DetailPokemon({ pokemonName }) {
+export default function DetailPokemon() {
     const [detailPokemon, setDetailPokemon] = useState([]);
+    const { pokemonId } = useParams()
 
     useEffect(() => {
         const getDetailPokemon = async() => {
-            await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`)
+            await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`)
             .then(response => {
                 setDetailPokemon([response.data])
             })
@@ -21,7 +23,7 @@ export default function DetailPokemon({ pokemonName }) {
         }
 
         getDetailPokemon()
-    }, [detailPokemon, pokemonName])
+    }, [detailPokemon, pokemonId])
 
 
     return (

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import PokemonCards from './PokemonCards';
 
 export default function FilterPokedex({ pokedex, pokemonSkillName, handleDetailPokemon }) {
     const [pokemonFiltered, setPokemonFiltered] = useState([]);
@@ -45,36 +46,18 @@ export default function FilterPokedex({ pokedex, pokemonSkillName, handleDetailP
                 pokemonSkillName !== null && pokemonFiltered.map((item, i) => {
                     const pokemonName = item.name.charAt(0).toUpperCase() + item.name.slice(1)
                     return (
-                    <div onClick={() => handleDetailPokemon(item.name)} className='pokelist' key={i + 1}>
-                        <img src={item.sprites.other.home.front_default} alt="poke-img" />
-                        <h2>{pokemonName}</h2>
-                        <div className='skills-pokelist'>
-                        {item.types.map((item, i) => {
-                            const pokemonSkill = item.type.name.charAt(0).toUpperCase() + item.type.name.slice(1)
-                            return <button key={i} className={`pokeskill-item ${item.type.name}`}>{pokemonSkill}</button>
-                        })}
-                        </div>
-                    </div>
+                        <PokemonCards 
+                            name={item.name}
+                            key={i + 1}
+                            pokemonName={pokemonName}
+                            img={item.sprites.other.home.front_default}
+                            skill={item.types}
+                        />
                     )
                 })
                 :
                 <h1>Data Tidak Ada!</h1>    
             }
-            {/* {pokemonSkillName !== null && pokemonFiltered.map((item, i) => {
-                const pokemonName = item.name.charAt(0).toUpperCase() + item.name.slice(1)
-                return (
-                <div onClick={() => handleDetailPokemon(item.name)} className='pokelist' key={i + 1}>
-                    <img src={item.sprites.other.home.front_default} alt="poke-img" />
-                    <h2>{pokemonName}</h2>
-                    <div className='skills-pokelist'>
-                    {item.types.map((item, i) => {
-                        const pokemonSkill = item.type.name.charAt(0).toUpperCase() + item.type.name.slice(1)
-                        return <button key={i} className={`pokeskill-item ${item.type.name}`}>{pokemonSkill}</button>
-                    })}
-                    </div>
-                </div>
-                )
-            })} */}
         </>
     )
 }
