@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
 import '../styles/DetailPokemon.scss'
 
-export default function DetailPokemon() {
-    const { pokedexName } = useSelector(state => state.pokemon);
+export default function DetailPokemon({ pokemonName }) {
     const [detailPokemon, setDetailPokemon] = useState([]);
 
     useEffect(() => {
         const getDetailPokemon = async() => {
-            await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokedexName}/`)
+            await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`)
             .then(response => {
                 setDetailPokemon([response.data])
             })
@@ -23,7 +21,7 @@ export default function DetailPokemon() {
         }
 
         getDetailPokemon()
-    }, [detailPokemon, pokedexName])
+    }, [detailPokemon, pokemonName])
 
 
     return (

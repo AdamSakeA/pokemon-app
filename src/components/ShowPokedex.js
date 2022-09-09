@@ -9,6 +9,7 @@ import FilterPokedex from './FilterPokedex';
 export default function PokeLists({ pokedex, pokemonSkillName }) {
     let offset = 0;
     const [pokemonAll, setPokemonAll] = useState([]);
+    const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ export default function PokeLists({ pokedex, pokemonSkillName }) {
         const getPokeList = async() => {
             await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=10`)
             .then((response) => {
+                setLoading(!loading)
                 response.data.results.forEach(item => getPokeForm(item.name));
             })
             .catch((error) => {
@@ -54,30 +56,46 @@ export default function PokeLists({ pokedex, pokemonSkillName }) {
         navigate(`/pokedex/${name}`)
     }
 
+    const LoadingSpinner = () => {
+        return (
+            <h1>LOADING!!</h1>
+        )
+    }
+
     const PokemonResult = () => {
         return (
-            pokemonAll.map((item, i) => {
-                const pokemonName = item.name.charAt(0).toUpperCase() + item.name.slice(1)
-                return (
-                <div onClick={() => handleDetailPokemon(item.name)} className='pokelist' key={i + 1}>
-                    <img src={item.sprites.other.home.front_default} alt="poke-img" />
-                    <h2>{pokemonName}</h2>
-                    <div className='skills-pokelist'>
-                    {item.types.map((item, i) => {
-                        const pokemonSkill = item.type.name.charAt(0).toUpperCase() + item.type.name.slice(1)
-                        return <button key={i} className={`pokeskill-item ${item.type.name}`}>{pokemonSkill}</button>
-                    })}
+            <>
+                {pokemonAll.map((item, i) => {
+                    const pokemonName = item.name.charAt(0).toUpperCase() + item.name.slice(1)
+                    return (
+                    <div onClick={() => handleDetailPokemon(item.name)} className='pokelist' key={i + 1}>
+                        <img src={item.sprites.other.home.front_default} alt="poke-img" />
+                        <h2>{pokemonName}</h2>
+                        <div className='skills-pokelist'>
+                        {item.types.map((item, i) => {
+                            const pokemonSkill = item.type.name.charAt(0).toUpperCase() + item.type.name.slice(1)
+                            return <button key={i} className={`pokeskill-item ${item.type.name}`}>{pokemonSkill}</button>
+                        })
+                        }
+                        </div>
                     </div>
-                </div>
-                )
-            })
+                    )
+                    })}
+            </>
         )
     }
 
     return (
         <div className='pokelist-contents container'>
-            {pokemonSkillName.length === 0 && pokedex.length === 0 ? <PokemonResult /> 
-            : <FilterPokedex handleDetailPokemon={handleDetailPokemon} pokedex={pokedex} pokemonSkillName={pokemonSkillName} />}
+            {!loading ?
+            (pokemonSkillName.length === 0 && pokedex.length === 0 ? 
+                <PokemonResult /> : 
+                <FilterPokedex 
+                handleDetailPokemon={handleDetailPokemon} 
+                pokedex={pokedex} 
+                pokemonSkillName={pokemonSkillName} 
+                />
+            ) : <LoadingSpinner /> }
         </div>
     )
 }
