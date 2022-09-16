@@ -1,15 +1,11 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { update } from '../features/PokeSlice';
 
 export default function PokemonCards(props) {
     const navigate = useNavigate();
-    const dispatch = useDispatch()
 
     const handleDetailPokemon = (name) => {
-        dispatch(update({pokedexName: name}))
         navigate(`/pokedex/${name}`)
     }
 

@@ -12,6 +12,8 @@ export default function Pokedex() {
   const [prevPokedex, setPrevPokedex] = useState("");
   const [pokemonSkills, setPokemonSkills] = useState([]);
   const [pokemonSkillName, setPokemonSkillName] = useState([]);
+  const [pokeFilter, setPokeFilter] = useState(false)
+  const [isActive, setIsActive] = useState("")
   const pokemonName = useRef()
 
   useEffect(() => {
@@ -32,6 +34,8 @@ export default function Pokedex() {
   }
 
   const getSkillName = useCallback(async(skillName) => {
+    setPokeFilter(true)
+    setIsActive(skillName)
     await axios.get(`https://pokeapi.co/api/v2/type/${skillName}`)
     .then((response) => {
       setPokemonSkillName([])
@@ -51,24 +55,25 @@ export default function Pokedex() {
   }
 
   const handleSearch = (name) => {
-    if(prevPokedex !== "") {
-      const currentName = name
-      setPokedex(currentName)
-    } else {
-      setPokedex("")
-    }
+    setPokeFilter(true)
+    setPokedex(name)
   }
 
-  const handleResetPokemonSkill = () => {
+  const handleResetPokemonSkill = useCallback(() => {
     setPokemonSkillName([])
     setPrevPokedex("")
     setPokedex("")
-  }
+    setPokeFilter(false)
+    setIsActive("")
+  }, [])
 
-  const handleResetPokemonName = () => {
+  const handleResetPokemonName = useCallback(() => {
+    setPokemonSkillName([])
     setPrevPokedex("")
     setPokedex("")
-  }
+    setPokeFilter(false)
+    setIsActive("")
+  }, [])
 
   return (
     <div className='pokedex-page'>
@@ -77,21 +82,22 @@ export default function Pokedex() {
         <div className='pokedex-contents container'>
           <h1 className='title-pokedex'>Search your pokemon!</h1>
           <div className='pokedex-input' >
+            <ImSearch type='submit' className='icon-search' onClick={() => handleSearch(prevPokedex)}/>
             <input className='pokedex-search' type="text" placeholder='Search' ref={pokemonName} value={prevPokedex} onChange={(e) => setPrevPokedex(e.target.value)} />
             {prevPokedex === "" ? null : <RiCloseCircleFill onClick={() => handleResetPokemonName()} className='icon-search'/> }
-            <ImSearch type='submit' className='icon-search' onClick={() => handleSearch(prevPokedex)}/>
+            <input type='submit' className='' disabled={prevPokedex === "" ? true : false} onClick={() => handleSearch(prevPokedex)} value={'Search'} />
           </div>
           <div className='pokedex-input-skills'>
             {pokemonSkills.map((item, i) => {
               const pokemonSkills = item.name.charAt(0).toUpperCase() + item.name.slice(1)
               return (
-                <button className={`skill-btn`} onClick={() => getSkillName(item.name)} key={i}>{pokemonSkills}</button>
+                <button className={`skill-btn ${isActive === item.name ? "active" : ""}`} onClick={() => getSkillName(item.name)} key={i}>{pokemonSkills}</button>
               )
             })}
           </div>
           <button onClick={() => handleResetPokemonSkill()}>Reset</button>
         </div>
-        <ShowPokemon pokedex={pokedex} pokemonSkillName={pokemonSkillName} />
+        <ShowPokemon pokedex={pokedex} pokemonSkillName={pokemonSkillName} pokeFilter={pokeFilter} />
       </div>
       <Footer />
     </div>

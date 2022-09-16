@@ -1,50 +1,45 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import '../styles/Pokedex.scss';
 import axios from "axios";
 import FilterPokedex from './FilterPokedex';
 import PokemonCards from './PokemonCards';
 import PokeCardSkeleton from './PokeCardSkeleton';
 
-export default function PokeLists({ pokedex, pokemonSkillName }) {
-    let offset = 0;
+export default function PokeLists({ pokedex, pokemonSkillName, pokeFilter }) {
+    const [limit, setLimit] = useState(0);
     const [pokemonAll, setPokemonAll] = useState([]);
+    const [pokemonListName, setListPokemonName] = useState([]);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const getPokeList = async() => {
-            await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=10`)
+            await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${limit}&limit=10`)
             .then((response) => {
-                response.data.results.forEach(item => getPokeForm(item.name));
-                setLoading(!loading)
+                setLoading(false)
+                response.data.results.forEach(item => setListPokemonName((n) => [...n, item.name]));
             })
             .catch((error) => {
                 if (error.response) {
                     console.log(error.response.data);
                 }
             })
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            offset += 10;
-        }
-
-        const handleScroll = (e) => {
-            if (window.innerHeight + e.target.documentElement.scrollTop + 1 >= e.target.documentElement.scrollHeight) {
+            .finally(() => {
                 setLoading(true)
-                setTimeout(() => {
-                    getPokeList()
-                }, 1500);
-            }
+            })
         }
 
         getPokeList()
-        window.addEventListener('scroll', handleScroll)
-    }, [])
+        // getPokeForm()
+    }, [limit])
 
     const getPokeForm = async(name) => {
         await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
             .then((response) => {
                 setPokemonAll(currentData => [...currentData, response.data]);
+                setLimit(limit + 10)
+                setListPokemonName([])
+
             })
             .catch((error) => {
                 if (error) {
@@ -53,13 +48,30 @@ export default function PokeLists({ pokedex, pokemonSkillName }) {
             });
     }
 
-    const handleDetailPokemon = (name) => {
-        navigate(`/pokedex/${name}`)
+    const handleScroll = () => {
+        pokemonListName.forEach((response) => {
+            setTimeout(async() => {
+                await getPokeForm(response)
+                setLoading(false)
+            }, 1000);
+        })
     }
 
     const PokemonResult = () => {
         return (
-            <>
+            <InfiniteScroll 
+                dataLength={pokemonAll.length} 
+                next={handleScroll} 
+                hasMore={true}
+                loader={loading && <PokeCardSkeleton cards={4} />}
+                style={{ display: 'flex'}}
+                endMessage={
+                    <p style={{ textAlign: 'center' }}>
+                    <b>Yay! You have seen it all</b>
+                    </p>
+                }
+                className="pokelist-contents"
+                >
                 {pokemonAll.map((item, i) => {
                     const pokemonName = item.name.charAt(0).toUpperCase() + item.name.slice(1)
                     return (
@@ -72,21 +84,17 @@ export default function PokeLists({ pokedex, pokemonSkillName }) {
                         />
                     )
                 })}
-            </>
+            </InfiniteScroll>
         )
     }
 
+    console.log(pokedex)
+
     return (
-        <div className='pokelist-contents container'>
-            {pokemonSkillName.length === 0 && pokedex.length === 0 ? 
-                <PokemonResult /> : 
-                <FilterPokedex 
-                    handleDetailPokemon={handleDetailPokemon} 
-                    pokedex={pokedex} 
-                    pokemonSkillName={pokemonSkillName} 
-                />
-            }
-            {loading && <PokeCardSkeleton cards={8}/>}
+        <div className='container'>
+            {(pokemonSkillName.length === 0 && pokedex.length === 0 && !pokeFilter) && <PokemonResult />}
+            {pokeFilter && <FilterPokedex pokedex={pokedex} pokemonSkillName={pokemonSkillName} />}
+            {/* {loading && <PokeCardSkeleton cards={8}/>} */}
         </div>
     )
 }
