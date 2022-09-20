@@ -4,16 +4,29 @@ import Footer from '../components/Footer'
 import axios from 'axios'
 import '../styles/DetailPokemon.scss'
 import { useParams } from 'react-router-dom'
+import AbilityDetailPokemon from '../components/detail pokemon/AbilityDetailPokemon'
+import EffectDetailPokemon from '../components/detail pokemon/EffectDetailPokemon'
+import StatsDetailPokemon from '../components/detail pokemon/StatsDetailPokemon'
 
 export default function DetailPokemon() {
-    const [detailPokemon, setDetailPokemon] = useState([]);
+    const [detailPokemon, setDetailPokemon] = useState({
+        dataPokemon : [],
+        abilities : [],
+        types : [],
+        stats : []
+    });
     const { pokemonId } = useParams()
 
     useEffect(() => {
-        const getDetailPokemon = async() => {
-            await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`)
+        const getDetailPokemon = async(name) => {
+            await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
             .then(response => {
-                setDetailPokemon([response.data])
+                setDetailPokemon({
+                    dataPokemon: [response.data], 
+                    abilities: response.data.abilities.map(item => item.ability.name),
+                    types : response.data.types,
+                    stats : response.data.stats
+                 })
             })
             .catch(error => {
                 if(error) {
@@ -22,14 +35,14 @@ export default function DetailPokemon() {
             })
         }
 
-        getDetailPokemon()
-    }, [detailPokemon, pokemonId])
+        getDetailPokemon(pokemonId)
+    }, [pokemonId])
 
-
+    console.log(detailPokemon)
     return (
         <div className='detail-pages'>
             <Navbar />
-            {detailPokemon.map((item, i) => {
+            {detailPokemon.dataPokemon.map((item, i) => {
                 const pokemonName = item.name.charAt(0).toUpperCase() + item.name.slice(1);
                 return (
                     <div className='detail-pokemon container' key={i}>
@@ -47,6 +60,9 @@ export default function DetailPokemon() {
                                 </div>
                             </div>
                         </div>
+                        <AbilityDetailPokemon ability={detailPokemon.abilities} />
+                        <EffectDetailPokemon types={detailPokemon.types} />
+                        <StatsDetailPokemon stats={detailPokemon.stats} />
                     </div>
                 )
             })}

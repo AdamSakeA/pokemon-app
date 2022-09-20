@@ -18,6 +18,7 @@ export default function PokeLists({ pokedex, pokemonSkillName, pokeFilter }) {
             .then((response) => {
                 setLoading(false)
                 response.data.results.forEach(item => setListPokemonName((n) => [...n, item.name]));
+                console.log(response.data.results)
             })
             .catch((error) => {
                 if (error.response) {
@@ -30,7 +31,6 @@ export default function PokeLists({ pokedex, pokemonSkillName, pokeFilter }) {
         }
 
         getPokeList()
-        // getPokeForm()
     }, [limit])
 
     const getPokeForm = async(name) => {
@@ -39,7 +39,6 @@ export default function PokeLists({ pokedex, pokemonSkillName, pokeFilter }) {
                 setPokemonAll(currentData => [...currentData, response.data]);
                 setLimit(limit + 10)
                 setListPokemonName([])
-
             })
             .catch((error) => {
                 if (error) {
@@ -88,13 +87,10 @@ export default function PokeLists({ pokedex, pokemonSkillName, pokeFilter }) {
         )
     }
 
-    console.log(pokedex)
-
     return (
         <div className='container'>
             {(pokemonSkillName.length === 0 && pokedex.length === 0 && !pokeFilter) && <PokemonResult />}
             {pokeFilter && <FilterPokedex pokedex={pokedex} pokemonSkillName={pokemonSkillName} />}
-            {/* {loading && <PokeCardSkeleton cards={8}/>} */}
         </div>
     )
 }

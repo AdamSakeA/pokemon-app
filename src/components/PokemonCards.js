@@ -10,7 +10,7 @@ export default function PokemonCards(props) {
     }
 
   return (
-    <div onClick={() => handleDetailPokemon(props.name)} className='pokelist' key={props.key}>
+    <div onClick={() => handleDetailPokemon(props.name)} className='pokelist'>
         <img className='image-pokemon' src={props.img || <Skeleton />} alt="poke-img" />
         <h2 className='title-pokemonname'>{props.pokemonName || <Skeleton />}</h2>
         <div className='skills-pokelist'>

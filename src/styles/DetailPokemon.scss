@@ -23,4 +23,30 @@
             }
         }
     }
+
+    .ability-container {
+        .sub-title {
+            color: white;
+            font-size: $s30;
+            margin-bottom: 20px;
+        }
+        .ability-contents {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            .ability-content {
+                display: flex;
+                flex-direction: column;
+                width: 30%;
+                .ability-title-skill {
+                    color: white;
+                    font-size: $s20;
+                }
+                .ability-desc-skill {
+                    color: white;
+                    font-size: $s15;
+                }
+            }
+        }
+    }
 }
