@@ -33,52 +33,52 @@ export default function EffectDetailPokemon({ types }) {
   }, [types])
 
   return (
-    <div className='ability-container'>
-        <h1 className='sub-title'>EFFECT</h1>
-        <div className='ability-contents'>
+    <div className='effect-container'>
+        <h1 className='sub-title'>EFFECT SKILL</h1>
+        <div className='effect-contents'>
         {effectPokemon.map((item, i) => {
           return (
-            <div key={i} className='ability-content'>
-              <h2>{item.effectName}</h2>
+            <div key={i} className='effect-content'>
+              <h2 className={`sub-title effect-titles ${item.effectName.toLowerCase()}`}>{item.effectName}</h2>
               <div className='group-contents'>
                 <h2>Double Damage From</h2>
+                <div key={i} className='list-group-contents'>
                 {item.effectDamage.doubleDamageFrom.map((item, i) => {
                   return (
-                    <div key={i} className='list-group-contents'>
-                      <p >{item.name}</p>
-                    </div>
-                  )
-                })}
+                      <h3 key={i} className={`list-effect ${item.name}`} >{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h3>
+                      )
+                    })}
+                </div>
               </div>
               <div className='group-contents'>
                 <h2>Double Damage To</h2>
+                <div className='list-group-contents'>
                 {item.effectDamage.doubleDamageTo.map((item, i) => {
                   return (
-                    <div key={i} className='list-group-contents'>
-                      <p>{item.name}</p>
-                    </div>
-                  )
-                })}
+                      <h3 key={i} className={`list-effect ${item.name}`}>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h3>
+                      )
+                    })}
+                </div>
               </div>
               <div className='group-contents'>
                 <h2>Half Damage From</h2>
+                <div className='list-group-contents'>
                 {item.effectDamage.halfDamageFrom.map((item, i) => {
                   return (
-                    <div key={i} className='list-group-contents'>
-                      <p>{item.name}</p>
-                    </div>
-                  )
-                })}
+                      <h3 key={i} className={`list-effect ${item.name}`}>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h3>
+                      )
+                    })}
+                </div>
               </div>
               <div className='group-contents'>
                 <h2>Half Damage To</h2>
+                <div className='list-group-contents'>
                 {item.effectDamage.halfDamageTo.map((item, i) => {
                   return (
-                    <div key={i} className='list-group-contents'>
-                      <p>{item.name}</p>
-                    </div>
-                  )
-                })}
+                      <h3 key={i} className={`list-effect ${item.name}`}>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h3>
+                      )
+                    })}
+                  </div>
               </div>
             </div>
           )

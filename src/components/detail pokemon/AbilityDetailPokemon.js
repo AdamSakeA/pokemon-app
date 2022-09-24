@@ -35,11 +35,12 @@ export default function AbiityDetailPokemon({ ability }) {
   return (
     <div className='ability-container'>
       <h1 className='sub-title'>ABILITY</h1>
+      <hr></hr>
       <div className='ability-contents'>
         {dataAbility.map((item, i) => {
           return (
             <div key={i} className='ability-content'>
-              <h2 className='ability-title-skill'>{item.abilityName}</h2>
+              <h1 className='ability-title-skill'>{item.abilityName}</h1>
               <p className='ability-desc-skill'>{item.effectAbility}</p>
             </div>          
           )

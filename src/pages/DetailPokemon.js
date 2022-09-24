@@ -38,7 +38,6 @@ export default function DetailPokemon() {
         getDetailPokemon(pokemonId)
     }, [pokemonId])
 
-    console.log(detailPokemon)
     return (
         <div className='detail-pages'>
             <Navbar />
@@ -54,15 +53,17 @@ export default function DetailPokemon() {
                                     {item.types.map((item, i) => {
                                         const skillsName = item.type.name.charAt(0).toUpperCase() + item.type.name.slice(1)
                                         return (
-                                            <p className='title-desc-detail' key={i}>{skillsName}</p>
+                                            <h3 className='title-desc-detail' key={i}>{skillsName}</h3>
                                         )
                                     })}
                                 </div>
                             </div>
                         </div>
                         <AbilityDetailPokemon ability={detailPokemon.abilities} />
-                        <EffectDetailPokemon types={detailPokemon.types} />
-                        <StatsDetailPokemon stats={detailPokemon.stats} />
+                        <div className='effect-stats-container'>
+                            <EffectDetailPokemon types={detailPokemon.types} />
+                            <StatsDetailPokemon stats={detailPokemon.stats} />
+                        </div>
                     </div>
                 )
             })}

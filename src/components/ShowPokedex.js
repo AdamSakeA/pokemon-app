@@ -7,85 +7,79 @@ import PokemonCards from './PokemonCards';
 import PokeCardSkeleton from './PokeCardSkeleton';
 
 export default function PokeLists({ pokedex, pokemonSkillName, pokeFilter }) {
-    const [limit, setLimit] = useState(0);
-    const [pokemonAll, setPokemonAll] = useState([]);
-    const [pokemonListName, setListPokemonName] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const [limit, setLimit] = useState(0);
+  const [pokemonAll, setPokemonAll] = useState([]);
+  const [listPokemonName, setListPokemonName] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const getPokeList = async() => {
-            await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${limit}&limit=10`)
-            .then((response) => {
-                setLoading(false)
-                response.data.results.forEach(item => setListPokemonName((n) => [...n, item.name]));
-                console.log(response.data.results)
-            })
-            .catch((error) => {
-                if (error.response) {
-                    console.log(error.response.data);
-                }
-            })
-            .finally(() => {
-                setLoading(true)
-            })
-        }
-
-        getPokeList()
-    }, [limit])
-
-    const getPokeForm = async(name) => {
-        await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
-            .then((response) => {
-                setPokemonAll(currentData => [...currentData, response.data]);
-                setLimit(limit + 10)
-                setListPokemonName([])
-            })
-            .catch((error) => {
-                if (error) {
-                    console.log(error.response.data);
-                }
-            });
-    }
-
-    const handleScroll = () => {
-        pokemonListName.forEach((response) => {
-            setTimeout(async() => {
-                await getPokeForm(response)
-                setLoading(false)
-            }, 1000);
+  useEffect(() => {
+    const getPokemonList = async() => {
+      await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${limit}&limit=20`)
+        .then(response => {
+          setTimeout(() => {
+            setLoading(false)
+            setListPokemonName(response.data.results.map(item => item.url))
+          }, 3000);
+        })
+        .catch((error) => {
+          if (error) {
+              console.log(error.response.data);
+          }
         })
     }
 
-    const PokemonResult = () => {
-        return (
-            <InfiniteScroll 
-                dataLength={pokemonAll.length} 
-                next={handleScroll} 
-                hasMore={true}
-                loader={loading && <PokeCardSkeleton cards={4} />}
-                style={{ display: 'flex'}}
-                endMessage={
-                    <p style={{ textAlign: 'center' }}>
-                    <b>Yay! You have seen it all</b>
-                    </p>
-                }
-                className="pokelist-contents"
-                >
-                {pokemonAll.map((item, i) => {
-                    const pokemonName = item.name.charAt(0).toUpperCase() + item.name.slice(1)
-                    return (
-                        <PokemonCards 
-                            name={item.name}
-                            key={i + 1}
-                            pokemonName={pokemonName}
-                            img={item.sprites.other.home.front_default}
-                            skill={item.types}
-                        />
-                    )
-                })}
-            </InfiniteScroll>
-        )
+    getPokemonList()
+  }, [limit])
+  
+  useEffect(() => {
+    const getPokeForm = () => {
+      listPokemonName.map(async(item) => {
+        return await axios.get(item)
+          .then(response => {
+            setPokemonAll(item => [...item, response.data])
+            setListPokemonName([])
+          })
+          .catch((error) => {
+            if(error){
+              console.log(error.response.data);
+            }
+          });
+      })
     }
+
+    getPokeForm()
+  }, [listPokemonName])
+
+  const handleScroll = () => {
+      setLimit(limit + 20)
+      setLoading(true)
+  }
+
+  const PokemonResult = () => {
+    return ( 
+      <InfiniteScroll 
+          dataLength={pokemonAll.length} 
+          next={() => handleScroll()} 
+          hasMore={loading ? false : true}
+          style={{ display: 'flex'}}
+          endMessage={ <PokeCardSkeleton cards={4}/>}
+          className="pokelist-contents"
+          >
+          {pokemonAll.map((item, i) => {
+              const pokemonName = item.name.charAt(0).toUpperCase() + item.name.slice(1)
+              return (
+                  <PokemonCards 
+                      name={item.name}
+                      key={i + 1}
+                      pokemonName={pokemonName}
+                      img={item.sprites.other.home.front_default}
+                      skill={item.types}
+                  />
+              )
+          })}
+      </InfiniteScroll>
+    )
+  }
 
     return (
         <div className='container'>
