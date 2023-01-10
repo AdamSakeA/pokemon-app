@@ -39,6 +39,7 @@ export default function Pokedex() {
     await axios.get(`https://pokeapi.co/api/v2/type/${skillName}`)
     .then((response) => {
       setPokemonSkillName([])
+      setPrevPokedex("")
       if (pokemonSkillName !== null) {
         return response.data.pokemon.forEach(item => setPokemonSkillName(currentData => [...currentData, item.pokemon.name]))
       } 

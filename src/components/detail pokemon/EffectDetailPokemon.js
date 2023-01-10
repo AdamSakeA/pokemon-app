@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../../styles/DetailPokemon/EffectDetailPokemon.scss';
 
 export default function EffectDetailPokemon({ types }) {
   const [effectPokemon, setEffectPokemon] = useState([]);

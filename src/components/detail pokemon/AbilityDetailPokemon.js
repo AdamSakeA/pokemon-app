@@ -1,9 +1,12 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react';
-import '../../styles/DetailPokemon.scss'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import '../../styles/DetailPokemon/AbilityDetailPokemon.scss'
 
 export default function AbiityDetailPokemon({ ability }) {
   const [dataAbility, setDataAbility] = useState([]);
+  AOS.init();
 
   useEffect(() => {
     const getLinkAbility = async(name) => {
@@ -33,7 +36,11 @@ export default function AbiityDetailPokemon({ ability }) {
   }, [ability])
 
   return (
-    <div className='ability-container'>
+    <div 
+      className='ability-container'
+      data-aos="fade-up"
+      data-aos-duration="2000"
+    >
       <h1 className='sub-title'>ABILITY</h1>
       <hr></hr>
       <div className='ability-contents'>

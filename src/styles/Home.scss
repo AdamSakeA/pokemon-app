@@ -1,28 +1,33 @@
 @import '../styles/root.scss';
 
 .Home {
-    background: $background-linear;
+    background: url('../assets/img/poke-hd.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 764px;
     .home-content {
+        margin-top: 200px;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        gap: 30px;
-        .img-pikachu {
-            width: 400px;
+        gap: 10px;
+        text-shadow: 5px 5px 10px black;
+        color: white;
+        h1 {
+            font-size: $s50;
         }
-        .home-content-right {
-            color: white;
-            max-width: 80%;
-            h1 {
-                font-size: $s50;
-            }
-            p {
-                font-size: $s20;
-            }
-            .pokedex-btn{
-                @extend %primary-btn;
-                margin-top: 20px;
-            }
+        p {
+            font-size: $s20;
+        }
+        .pokedex-btn{
+            @extend %primary-btn;
+            margin-top: 20px;
+        }
+        .pokedex-btn:hover {
+            transition: 1s;
+            background-color: #2879dd;
         }
     }
 }

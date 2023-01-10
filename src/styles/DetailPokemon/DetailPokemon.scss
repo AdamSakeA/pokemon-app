@@ -1,0 +1,35 @@
+@import '../root.scss';
+
+.detail-pages {
+    background: $background-linear;
+    .detail-pokemon {
+        display: flex;
+        flex-direction: column;
+        margin-top: 100px;
+        .head-detail {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            color: white;
+            img {
+                width: 300px;
+            }
+            .desc-head-detail {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                .title-detail {
+                    font-size: $s50;
+                }
+                .desc-detail {
+                    display: flex;
+                    gap:20px;
+                    .title-desc-detail {
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }
+    }
+}

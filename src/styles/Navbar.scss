@@ -1,18 +1,55 @@
 @import './root.scss';
 
 .navbar-container {
+    // background-color: rgba(255, 255, 255, 0.1);
+    // background-color: rgba($color: #000000, $alpha: 0.2);
+    // opacity: 20%;
     .Navbar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 30px 0;
+        // padding: 30px 0;
         .link-navbar {
+            font-weight: 600;
+            color: white;
+            font-size: $s15;
+        }
+    }
+    // ul {
+    //     display: flex;
+    //     gap: 30px;
+    // }
+    // .link-navbar-active {
+        //     transition: 0.5s;
+        //     color: #2879dd;
+        // }
+    .navbar-right {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        p {
             color: white;
             font-size: $s20;
         }
+        .link {
+            font-weight: 600;
+            color: white;
+            font-size: $s15;
+        }
+        .link-active {
+            color: #2879dd;
+            background-color: white;
+            padding: 20px;
+        }
+        .link:hover {
+            transition: 0.5s;
+            color: #2879dd;
+        }
     }
-    ul {
-        display: flex;
-        gap: 30px;
-    }
+}
+
+
+.navbar-container:hover {
+    transition: 0.5s;
+    background-color: rgba($color: #000000, $alpha: 0.2);
 }

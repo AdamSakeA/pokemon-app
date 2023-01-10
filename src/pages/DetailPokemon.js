@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
-import '../styles/DetailPokemon.scss'
+import '../styles/DetailPokemon/DetailPokemon.scss'
 import { useParams } from 'react-router-dom'
 import AbilityDetailPokemon from '../components/detail pokemon/AbilityDetailPokemon'
 import EffectDetailPokemon from '../components/detail pokemon/EffectDetailPokemon'
@@ -59,10 +59,10 @@ export default function DetailPokemon() {
                                 </div>
                             </div>
                         </div>
+                        <StatsDetailPokemon stats={detailPokemon.stats} />
                         <AbilityDetailPokemon ability={detailPokemon.abilities} />
                         <div className='effect-stats-container'>
                             <EffectDetailPokemon types={detailPokemon.types} />
-                            <StatsDetailPokemon stats={detailPokemon.stats} />
                         </div>
                     </div>
                 )
