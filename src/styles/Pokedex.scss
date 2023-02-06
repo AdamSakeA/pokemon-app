@@ -3,202 +3,223 @@
 // setup skill button
 
 %button-skills {
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: $s15;
-    font-weight: 600;
-    text-align: center;
-    margin: 20px 0px 20px 0px;
-    padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: $s15;
+  font-weight: 600;
+  text-align: center;
+  margin: 20px 0px 20px 0px;
+  padding: 10px 20px;
 }
 
 .normal {
-    background-color: chocolate;
+  background-color: chocolate;
 }
 
 .fighting {
-    background-color: palevioletred;
+  background-color: palevioletred;
 }
 
 .flying {
-    background-color: rgb(4, 172, 172);
+  background-color: rgb(4, 172, 172);
 }
 
 .poison {
-    background-color: purple;
+  background-color: purple;
 }
 
 .ground {
-    background-color: rgb(154, 64, 0);
+  background-color: rgb(154, 64, 0);
 }
 
 .ground {
-    background-color: rgb(103, 45, 5);
+  background-color: rgb(103, 45, 5);
 }
 
 .bug {
-    background-color: #3a8686;
+  background-color: #3a8686;
 }
 
 .ghost {
-    background-color: rgb(75, 26, 75);
+  background-color: rgb(75, 26, 75);
 }
 
 .steel {
-    background-color: grey;
+  background-color: grey;
 }
 
 .fire {
-    background-color: red;
+  background-color: red;
 }
 
 .water {
-    background-color: rgb(6, 73, 160);
+  background-color: rgb(6, 73, 160);
 }
 
 .grass {
-    background-color: green;
+  background-color: green;
 }
 
 .electric {
-    background-color: rgb(195, 195, 0);
+  background-color: rgb(195, 195, 0);
 }
 
 .psychic {
-    background-color: pink;
+  background-color: pink;
 }
 
 .ice {
-    background-color: aquamarine;
+  background-color: aquamarine;
 }
 
 .dragon {
-    background-color: rgb(0, 0, 94);
+  background-color: rgb(0, 0, 94);
 }
 
 .dark {
-    background-color: rgb(72, 72, 72);
+  background-color: rgb(72, 72, 72);
 }
 
 .fairy {
-    background-color: rgb(243, 18, 243);
+  background-color: rgb(243, 18, 243);
 }
 
 .unknown {
-    background-color: #3a8686;
+  background-color: #3a8686;
 }
 
 .shadow {
-    background-color: rgb(56, 56, 56);
+  background-color: rgb(56, 56, 56);
 }
 
 .rock {
-    background-color: rgb(81, 81, 81);
+  background-color: rgb(81, 81, 81);
 }
 
 // pages pokedex
 
 .pokedex-page {
-    background: $background-linear;
-    .pokedex {
+  background: rgb(16, 16, 16);
+  .pokedex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .pokedex-contents {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .reset-btn {
+        @extend %primary-btn;
+      }
+      .reset-btn:hover{
+        transition: 0.5s;
+        color: whitesmoke;
+        background-color: $hover-main-color;
+        box-shadow: 1px 1px 15px $hover-main-color;
+      }
+      .title-pokedex{
+        color: white;
+        font-weight: 300;
+        font-size: $s50;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+      }
+      .pokedex-input {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        .pokedex-contents {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 10px;
-            .title-pokedex{
-                color: white;
-            }
-            .pokedex-input {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                .pokedex-search {
-                    width: 400px;
-                    padding: 10px 30px;
-                    border: none;
-                    border-radius: 20px;
-                    background-color: rgba($color: #ffff, $alpha: 0.5);
-                    color: white;
-                    
-                    @include placeholder-color(white,red);
-                }
-                .icon-search {
-                    color: white;
-                    font-size: $s20;
-                }
-            }
-            .pokedex-input-skills {
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: center;
-                align-items: center;
-                gap: 20px;
-                margin-top: 20px;
-                padding: 20px;
-                background-color: rgba(255, 255, 255, 0.5);
-                border-radius: 20px;
-                .skill-btn {
-                    padding: 10px 20px;
-                    border: 1px solid rgb(7, 117, 180);
-                    border-radius: 10px;
-                    background-color: white;
-                    color: rgb(7, 117, 180);
-                    box-shadow: 2px 2px 5px rgba($color: #000000, $alpha: 0.5);
-                    font-size: $s15;
-                    font-weight: 600;
-                }
-
-                .active {
-                    background-color: rgb(7, 117, 180);
-                    color: white;
-                }
-
-                .skill-btn:hover {
-                    background-color: rgb(7, 117, 180);
-                    color: white;
-                }
-            }
+        gap: 20px;
+        .pokedex-search {
+          width: 400px;
+          padding: 10px 30px;
+          border: 1px solid $main-color;
+          border-radius: 20px;
+          // background-color: rgba($color: #ffff, $alpha: 0.2);
+          background-color: transparent;
+          color: white;
+          letter-spacing: 1.5px;
         }
+        .pokedex-search:focus {
+          outline: 1px solid $hover-main-color;
+          border: none;
+          box-shadow: 1px 1px 20px $main-color;
+        }
+        .icon-search {
+          color: white;
+          font-size: $s20;
+        }
+      }
+      .pokedex-input-skills {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        margin: 50px 0;
+        padding: 30px 60px;
+        border: 1px solid $hover-main-color;
+        box-shadow: 1px 1px 30px rgba(159, 25, 25, 1);
+        background-color: rgba(159, 25, 25, 0.2) ;
+        border-radius: 20px;
+        .skill-btn {
+          padding: 10px 20px;
+          border: 1px solid $hover-main-color;
+          border-radius: 10px;
+          background-color: $main-color;
+          color: white;
+          box-shadow: 2px 2px 10px rgba($color: #000, $alpha: 0.5);
+          font-size: $s15;
+          font-weight: 600;
+        }
+        .active {
+          background-color: white;
+          border: 1px solid $hover-main-color;
+          box-shadow: 1px 1px 20px rgba($color: #dd2828, $alpha: 1);
+          color: $main-color;
+        }
+        .skill-btn:hover {
+          box-shadow: 1px 1px 20px rgba($color: #dd2828, $alpha: 1);
+          background-color: $hover-main-color;
+          color: white;
+          transition: 0.5s;
+        }
+      }
     }
+  }
 }
 
 .pokelist-contents {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 30px;
+  margin-top: 100px;
+  .pokelist {
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: column;
+    background-color: white;
+    width: 250px;
+    border-radius: 10px;
     align-items: center;
-    justify-content: space-around;
-    gap: 30px;
-    margin-top: 100px;
-    .pokelist {
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        width: 250px;
-        border-radius: 10px;
-        align-items: center;
-        .image-pokemon{
-            margin-top: 10px;
-            width: 200px;
-        }
-        .title-pokemonname {
-            margin-top: 20px;
-        }
-        .skills-pokelist {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-            gap: 10px;
-            .pokeskill-item {
-                @extend %button-skills;
-            }
-        }
+    .image-pokemon{
+      margin-top: 10px;
+      width: 200px;
     }
+    .title-pokemonname {
+      margin-top: 20px;
+    }
+    .skills-pokelist {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      gap: 10px;
+      .pokeskill-item {
+        @extend %button-skills;
+      }
+    }
+  }
 }
 

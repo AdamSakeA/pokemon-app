@@ -81,7 +81,7 @@ export default function Pokedex() {
       <Navbar />
       <div className='pokedex section'>
         <div className='pokedex-contents container'>
-          <h1 className='title-pokedex'>Search your pokemon!</h1>
+          <h1 className='title-pokedex'>Search Pokemon!</h1>
           <div className='pokedex-input' >
             <ImSearch type='submit' className='icon-search' onClick={() => handleSearch(prevPokedex)}/>
             <input className='pokedex-search' type="text" placeholder='Search' ref={pokemonName} value={prevPokedex} onChange={(e) => setPrevPokedex(e.target.value)} />
@@ -96,7 +96,7 @@ export default function Pokedex() {
               )
             })}
           </div>
-          <button onClick={() => handleResetPokemonSkill()}>Reset</button>
+          <button className='reset-btn' onClick={() => handleResetPokemonSkill()}>Reset</button>
         </div>
         <ShowPokemon pokedex={pokedex} pokemonSkillName={pokemonSkillName} pokeFilter={pokeFilter} />
       </div>
