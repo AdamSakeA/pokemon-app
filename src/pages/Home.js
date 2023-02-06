@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import '../styles/Home.scss'
 import { useNavigate } from 'react-router-dom'
 import Footer from '../components/Footer'
+import imageBg from '../assets/img/pokeball-bg.jpeg'
 
 export default function Home() {
   const navigate = useNavigate()
@@ -13,15 +14,14 @@ export default function Home() {
   }
 
   return (
-    <div className='Home'>
+    <div className='Home container'>
       <Navbar />
-      <div className='home-contents section'>
-        <div className='home-content container'>
-            <h1>Wanna Know Any Pokemon?</h1>
-            <p>We share about pokemon monsters by skills in pokedex, if you want to know pokemon detail just click the card</p>
-            <button onClick={() => setLink()} className='pokedex-btn'>Go to Pokedex</button>
+      <img className='background-mobile' src={imageBg} alt='pokeimg' />
+        <div className='home-content'>
+            <h1 className='title-home'>Wanna Know Any Pokemon?</h1>
+            <p className='desc-home'>We share about pokemon monsters by skills in pokedex, if you want to know pokemon detail just click the card</p>
         </div>
-      </div>
+        <button onClick={() => setLink()} className='pokedex-btn'>Go to Pokedex</button>
       <Footer />
     </div>
   )

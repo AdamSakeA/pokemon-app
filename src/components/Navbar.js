@@ -12,7 +12,6 @@ export default function Navbar() {
         >
           Home
         </NavLink>
-        <p>|</p>
         <NavLink
           to="/pokedex"
           className={({ isActive }) => (isActive ? "link-active link" : "link")}
@@ -24,13 +23,11 @@ export default function Navbar() {
   };
 
   return (
-    <div className='navbar-container'>
-        <div className="Navbar container">
-            <Link className = "link-navbar" to="/">Pokemon</Link>
-            <div className='navbar-right'>
-              <NavBar />
-            </div>
-        </div>
+    <div className="Navbar container">
+      <Link className = "link-navbar" to="/">Pokemon</Link>
+      <div className='navbar-right'>
+        <NavBar />
+      </div>
     </div>
   )
 }
