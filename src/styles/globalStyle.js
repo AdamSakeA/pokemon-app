@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-// @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap");
 export const GlobalStyle = createGlobalStyle`
     body, html {
         margin: 0;
@@ -9,6 +8,11 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none;
         text-decoration: none;
         font-family: "Poppins", sans-serif
+    }
+
+    h1, h2, h3, h4, p {
+        padding: 0;
+        margin: 0;
     }
 
     body {

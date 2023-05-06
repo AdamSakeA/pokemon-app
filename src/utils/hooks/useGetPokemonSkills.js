@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPokemonSkills } from "../services/api";
 
-export default function useGetPokemonSkills() {
-  const { data, isLoading, isError } = useQuery(["skills"], () =>
+export default function useGetPokemonSkills(queryKey = "skills") {
+  const { data, isLoading, isError } = useQuery([queryKey], () =>
     getPokemonSkills()
   );
 

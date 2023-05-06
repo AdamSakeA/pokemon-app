@@ -14,6 +14,10 @@ const TYPE = {
       filter: drop-shadow(5px 8px 5px rgb(53, 53, 53));
     }
   `,
+  imageEvolution: css`
+    width: 100px;
+    height: 100px;
+  `,
   imageDetail: css`
     width: 400px;
     height: 300px;

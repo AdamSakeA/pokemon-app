@@ -3,12 +3,16 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
-  background-color: #151515;
-  border-radius: 20px;
-  padding: 0 30px 20px 30px;
-`;
-
-export const Title = styled.h1`
-  text-align: center;
+  margin-top: 20px;
+  .abilities {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 425px) {
+    .abilities {
+      justify-content: center;
+      gap: 15px;
+    }
+  }
 `;

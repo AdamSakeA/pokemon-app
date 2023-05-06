@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getPokemonList } from "../services/api";
 
-export default function useGetPokemonList() {
+export default function useGetPokemonList(queryKey = "Pokemon List") {
   const {
     data,
     isLoading,
@@ -11,16 +11,17 @@ export default function useGetPokemonList() {
     fetchNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery(
-    ["Pokemon List"],
+    [queryKey],
     ({ pageParam }) => getPokemonList(pageParam),
     {
       getNextPageParam: (lastPage) =>
         lastPage.next ? lastPage.next : undefined,
+
       keepPreviousData: true,
     }
   );
 
-  const pages = data?.pages;
+  const pages = data?.pages; // get pages from react query
   const pokemons = [];
   pages?.forEach((item) => {
     pokemons.push([...item.results]);

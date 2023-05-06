@@ -53,3 +53,21 @@ export const getPokemonAbility = async (ability) => {
     return error.response.data;
   }
 };
+
+export const getPokemonSpecies = async (name) => {
+  try {
+    const response = await Api.get(`pokemon-species/${name}/`);
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+export const getPokemonEvolution = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};

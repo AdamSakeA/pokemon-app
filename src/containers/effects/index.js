@@ -1,6 +1,6 @@
 import React from "react";
 import { useGetPokemonByType } from "../../utils/hooks";
-import DetailEffect from "../../components/detail-effect";
+import { DetailEffect, DetailEffectSkeleton } from "../../components";
 
 export default function Effects({ effect }) {
   const { pokemonByType, isLoading, isError } = useGetPokemonByType(
@@ -8,7 +8,7 @@ export default function Effects({ effect }) {
     effect
   );
 
-  if (isLoading) return <h3>Loading...</h3>;
+  if (isLoading) return <DetailEffectSkeleton />;
   if (isError) return <h3>Something Wrong..</h3>;
 
   return <DetailEffect data={pokemonByType} />;

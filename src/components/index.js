@@ -1,5 +1,4 @@
 import Layout from "./layout";
-import FilterPokedex from "./filter-pokedex";
 import PokeCards from "./pokecard";
 import Button from "./button";
 import Search from "./search";
@@ -8,10 +7,13 @@ import PokeCardSkeleton from "./pokecard-skeleton";
 import DetailAbility from "./detail-ability";
 import DetailEffect from "./detail-effect";
 import DetailStat from "./detail-stat";
+import DetailEvolution from "./detail-evolution";
+
+import DetailAbilitySkeleton from "./detail-ability-skeleton";
+import DetailEffectSkeleton from "./detail-effect-skeleton";
 
 export {
   Layout,
-  FilterPokedex,
   PokeCards,
   Button,
   Search,
@@ -20,4 +22,7 @@ export {
   DetailAbility,
   DetailEffect,
   DetailStat,
+  DetailEvolution,
+  DetailAbilitySkeleton,
+  DetailEffectSkeleton,
 };

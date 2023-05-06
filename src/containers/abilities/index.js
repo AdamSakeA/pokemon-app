@@ -1,5 +1,6 @@
 import { useGetPokemonAbility } from "../../utils/hooks";
 import { DetailAbility } from "../../components";
+import DetailAbilitySkeleton from "../../components/detail-ability-skeleton";
 
 export default function Abilities({ ability }) {
   const { abilities, isLoading, isError } = useGetPokemonAbility(
@@ -7,7 +8,7 @@ export default function Abilities({ ability }) {
     ability
   );
 
-  if (isLoading) return <h3>Loading..</h3>;
+  if (isLoading) return <DetailAbilitySkeleton />;
   if (isError) return <h3>Something Wrong..</h3>;
 
   return <DetailAbility data={abilities} />;

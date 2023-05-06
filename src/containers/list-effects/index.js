@@ -1,5 +1,6 @@
 import React from "react";
 import Effects from "../effects";
+import { Container, Title } from "./listEffects.styles";
 
 export default function ListEffects({ effects }) {
   const effect = effects?.map((item, i) => {
@@ -7,9 +8,9 @@ export default function ListEffects({ effects }) {
   });
 
   return (
-    <div>
-      <h2>List Effect</h2>
+    <Container>
+      <Title>Skill Effects</Title>
       {effect}
-    </div>
+    </Container>
   );
 }

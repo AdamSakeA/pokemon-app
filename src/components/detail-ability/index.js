@@ -11,9 +11,8 @@ export default function DetailAbility({ data }) {
 
   return (
     <Container>
-      <h3>{deleteSymbol(data.name)}</h3>
+      <h2>{deleteSymbol(data.name)}</h2>
       <p>{handleAbility}</p>
-      <hr />
     </Container>
   );
 }

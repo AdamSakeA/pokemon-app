@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 export const ButtonContainer = styled.button`
   ${(props) => props.type && TYPE[props.type]}
   ${(props) => props.disabled && DISABLED}
+  font-size: ${(props) => props.fontSize};
   cursor: pointer;
   &:hover {
     transition: 0.5s;

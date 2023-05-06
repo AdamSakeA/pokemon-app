@@ -10,6 +10,7 @@ import { THEME } from "./styles/theme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
+// pages
 import HomePage from "./pages";
 import Pokedex from "./pages/pokedex";
 import DetailPokemon from "./pages/detail-pokemon";
