@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 // styled components
 import { GlobalStyle } from "./styles/globalStyle";
 import { ThemeProvider } from "styled-components";
-import { THEME } from "./styles/theme";
+import { theme } from "./styles/theme";
 
 // react query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -26,16 +26,16 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <ThemeProvider theme={THEME}>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <QueryClientProvider client={queryClient}>
-        {/* <ReactQueryDevtools initialIsOpen={true} /> */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/pokedex" element={<Pokedex />} />
           <Route path="/pokedex/:pokemonId" element={<DetailPokemon />} />
           <Route path="*" element={<PageError />} />
         </Routes>
+        {/* <ReactQueryDevtools initialIsOpen={true} /> */}
       </QueryClientProvider>
     </ThemeProvider>
   );

@@ -21,7 +21,7 @@ export default function Pokedex() {
 
   // hooks
   const { pokemonList, fetchNextPage, isFetching } = useGetPokemonList();
-  const { pokemonSkills } = useGetPokemonSkills();
+  const { pokemonSkills, isLoading } = useGetPokemonSkills();
 
   const handleWindowsToTop = () => {
     document.body.scrollTop = 0;
@@ -52,7 +52,12 @@ export default function Pokedex() {
         <h1>Search Pokemon!</h1>
         <Search setPokemonName={setPokemonName} />
       </Header>
-      <ListSkills payload={pokemonSkills} type={type} setType={setType} />
+      <ListSkills
+        payload={pokemonSkills}
+        type={type}
+        setType={setType}
+        isLoading={isLoading}
+      />
       <Contents>{showPokedex}</Contents>
       <Button type="backToTop" onClick={() => handleWindowsToTop()}>
         Back to top

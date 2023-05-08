@@ -2,7 +2,7 @@ import { Container, SkillsContainer } from "./pokemonSkills.styles";
 import { Button } from "../../components";
 import { ResponsiveSkills } from "./responsive-skills";
 
-export default function ListSkills({ payload, type, setType }) {
+export default function ListSkills({ payload, type, setType, isLoading }) {
   // set type to null
   const onClear = () => {
     setType("");
@@ -19,6 +19,7 @@ export default function ListSkills({ payload, type, setType }) {
         type={type}
         onClick={pokemonFilteredByType}
         onClear={onClear}
+        isLoading={isLoading}
       />
       <ResponsiveSkills
         payload={payload}
@@ -30,7 +31,14 @@ export default function ListSkills({ payload, type, setType }) {
   );
 }
 
-const SkillsContents = ({ payload, type, onClick, onClear }) => {
+const SkillsContents = ({ payload, type, onClick, onClear, isLoading }) => {
+  if (isLoading)
+    return (
+      <Container>
+        <h1>Loading..</h1>
+      </Container>
+    );
+
   return (
     <Container>
       <Button

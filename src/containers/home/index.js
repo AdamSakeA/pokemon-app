@@ -20,9 +20,7 @@ export default function Home() {
           We share about pokemon monsters by skills in pokedex, if you want to
           know pokemon detail just click the card
         </p>
-        <Button onClick={() => setLink()} className="pokedex-btn">
-          Go to Pokedex
-        </Button>
+        <Button onClick={() => setLink()}>Go to Pokedex</Button>
       </Contents>
       <Background src={imageBg} />
     </Container>
