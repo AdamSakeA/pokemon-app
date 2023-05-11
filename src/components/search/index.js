@@ -27,7 +27,7 @@ export default function Search({ setPokemonName }) {
   };
 
   return (
-    <SearchContainer>
+    <SearchContainer data-testid="search">
       <SearchIcon />
       <SearchForm onSubmit={onSubmit}>
         <SearchStyled

@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../styles/theme";
 import { MemoryRouter } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
-import HomePage from "..";
+import Home from "../home";
 
 const mockedUsedNavigate = jest.fn();
 
@@ -17,7 +17,7 @@ const setup = () => {
   render(
     <ThemeProvider theme={theme}>
       <MemoryRouter>
-        <HomePage />
+        <Home />
       </MemoryRouter>
     </ThemeProvider>
   );

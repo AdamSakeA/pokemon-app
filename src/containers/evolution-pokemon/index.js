@@ -1,6 +1,6 @@
 import React from "react";
 import { useGetPokemonBySearch } from "../../utils/hooks";
-import DetailEvolution from "../../components/detail-evolution";
+import { DetailEvolution } from "../../components";
 
 export default function EvolutionPokemon({ name }) {
   const { pokemonSearch, isLoading, isError } = useGetPokemonBySearch(

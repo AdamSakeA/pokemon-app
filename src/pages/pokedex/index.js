@@ -27,7 +27,6 @@ export default function Pokedex() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   };
-
   let showPokedex;
   if (!type && !pokemonName) {
     // get all pokemon cards

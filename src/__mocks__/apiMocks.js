@@ -1270,6 +1270,479 @@ const mockTypes = {
   ],
 };
 
+// const mockPokemonSearch = {
+//   abilities: [
+//     {
+//       ability: {
+//         name: "overgrow",
+//         url: "https://pokeapi.co/api/v2/ability/65/",
+//       },
+//       is_hidden: false,
+//       slot: 1,
+//     },
+//     {
+//       ability: {
+//         name: "chlorophyll",
+//         url: "https://pokeapi.co/api/v2/ability/34/",
+//       },
+//       is_hidden: true,
+//       slot: 3,
+//     },
+//   ],
+//   base_experience: 64,
+//   forms: [
+//     {
+//       name: "bulbasaur",
+//       url: "https://pokeapi.co/api/v2/pokemon-form/1/",
+//     },
+//   ],
+//   game_indices: [
+//     {
+//       game_index: 153,
+//       version: {
+//         name: "red",
+//         url: "https://pokeapi.co/api/v2/version/1/",
+//       },
+//     },
+//     {
+//       game_index: 153,
+//       version: {
+//         name: "blue",
+//         url: "https://pokeapi.co/api/v2/version/2/",
+//       },
+//     },
+//     {
+//       game_index: 153,
+//       version: {
+//         name: "yellow",
+//         url: "https://pokeapi.co/api/v2/version/3/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "gold",
+//         url: "https://pokeapi.co/api/v2/version/4/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "silver",
+//         url: "https://pokeapi.co/api/v2/version/5/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "crystal",
+//         url: "https://pokeapi.co/api/v2/version/6/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "ruby",
+//         url: "https://pokeapi.co/api/v2/version/7/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "sapphire",
+//         url: "https://pokeapi.co/api/v2/version/8/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "emerald",
+//         url: "https://pokeapi.co/api/v2/version/9/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "firered",
+//         url: "https://pokeapi.co/api/v2/version/10/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "leafgreen",
+//         url: "https://pokeapi.co/api/v2/version/11/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "diamond",
+//         url: "https://pokeapi.co/api/v2/version/12/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "pearl",
+//         url: "https://pokeapi.co/api/v2/version/13/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "platinum",
+//         url: "https://pokeapi.co/api/v2/version/14/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "heartgold",
+//         url: "https://pokeapi.co/api/v2/version/15/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "soulsilver",
+//         url: "https://pokeapi.co/api/v2/version/16/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "black",
+//         url: "https://pokeapi.co/api/v2/version/17/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "white",
+//         url: "https://pokeapi.co/api/v2/version/18/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "black-2",
+//         url: "https://pokeapi.co/api/v2/version/21/",
+//       },
+//     },
+//     {
+//       game_index: 1,
+//       version: {
+//         name: "white-2",
+//         url: "https://pokeapi.co/api/v2/version/22/",
+//       },
+//     },
+//   ],
+//   heigh: 7,
+//   held_items: [],
+//   id: 1,
+//   is_default: true,
+//   location_area_encounters: "https://pokeapi.co/api/v2/pokemon/1/encounters",
+
+//   name: "bulbasaur",
+//   order: 1,
+//   past_types: [],
+//   species: {
+//     name: "bulbasaur",
+//     url: "https://pokeapi.co/api/v2/pokemon-species/1/",
+//   },
+//   sprites: {
+//     back_default:
+//       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png",
+//     back_female: null,
+//     back_shiny:
+//       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png",
+//     back_shiny_female: null,
+//     front_default:
+//       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+//     front_female: null,
+//     front_shiny:
+//       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png",
+//     front_shiny_female: null,
+//     other: {
+//       dream_world: {
+//         front_default:
+//           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+//         front_female: null,
+//       },
+//       home: {
+//         front_default:
+//           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png",
+//         front_female: null,
+//         front_shiny:
+//           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
+//         front_shiny_female: null,
+//       },
+//       officialArtwork: {
+//         front_default:
+//           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+//         front_shiny:
+//           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png",
+//       },
+//     },
+//   },
+//   stats: [
+//     {
+//       base_stat: 45,
+//       effort: 0,
+//       stat: {
+//         name: "hp",
+//         url: "https://pokeapi.co/api/v2/stat/1/",
+//       },
+//     },
+//     {
+//       base_stat: 49,
+//       effort: 0,
+//       stat: {
+//         name: "attack",
+//         url: "https://pokeapi.co/api/v2/stat/2/",
+//       },
+//     },
+//     {
+//       base_stat: 49,
+//       effort: 0,
+//       stat: {
+//         name: "defense",
+//         url: "https://pokeapi.co/api/v2/stat/3/",
+//       },
+//     },
+//     {
+//       base_stat: 65,
+//       effort: 1,
+//       stat: {
+//         name: "special-attack",
+//         url: "https://pokeapi.co/api/v2/stat/4/",
+//       },
+//     },
+//     {
+//       base_stat: 65,
+//       effort: 0,
+//       stat: {
+//         name: "special-defense",
+//         url: "https://pokeapi.co/api/v2/stat/5/",
+//       },
+//     },
+//     {
+//       base_stat: 45,
+//       effort: 0,
+//       stat: {
+//         name: "speed",
+//         url: "https://pokeapi.co/api/v2/stat/6/",
+//       },
+//     },
+//   ],
+//   types: [
+//     {
+//       slot: 1,
+//       type: {
+//         name: "grass",
+//         url: "https://pokeapi.co/api/v2/type/12/",
+//       },
+//     },
+//     {
+//       slot: 2,
+//       type: {
+//         name: "poison",
+//         url: "https://pokeapi.co/api/v2/type/4/",
+//       },
+//     },
+//   ],
+//   weight: 69,
+// };
+
+const mockPokemonSearch = {
+  name: "bulbasaur",
+  sprites: {
+    other: {
+      dream_world: {
+        front_default:
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+      },
+    },
+  },
+  types: [{ type: { name: "grass" } }, { type: { name: "poison" } }],
+  abilities: [
+    {
+      ability: {
+        name: "chlorophyll",
+        url: "https://pokeapi.co/api/v2/ability/65/",
+      },
+    },
+    {
+      ability: {
+        name: "overgrow",
+        url: "https://pokeapi.co/api/v2/ability/34/",
+      },
+    },
+  ],
+  stats: [
+    {
+      base_stat: 45,
+      effort: 0,
+      stat: { name: "hp", url: "https://fakeurl.com" },
+    },
+    {
+      base_stat: 49,
+      effort: 0,
+      stat: { name: "attack", url: "https://fakeurl.com" },
+    },
+    {
+      base_stat: 49,
+      effort: 0,
+      stat: { name: "defense", url: "https://fakeurl.com" },
+    },
+    {
+      base_stat: 65,
+      effort: 1,
+      stat: { name: "special-attack", url: "https://fakeurl.com" },
+    },
+    {
+      base_stat: 65,
+      effort: 0,
+      stat: { name: "special-defense", url: "https://fakeurl.com" },
+    },
+    {
+      base_stat: 45,
+      effort: 0,
+      stat: { name: "speed", url: "https://fakeurl.com" },
+    },
+  ],
+  species: {
+    name: "bulbasaur",
+    url: "https://pokeapi.co/api/v2/pokemon-species/1/",
+  },
+};
+
+const mockAbility = {
+  effect_changes: [],
+  effect_entries: [
+    {
+      effect:
+        "When this Pokémon has 1/3 or less of its HP remaining, its grass-type moves inflict 1.5× as much regular damage.",
+      language: {
+        name: "en",
+        url: "https://pokeapi.co/api/v2/language/9/",
+      },
+      short_effect:
+        "Strengthens grass moves to inflict 1.5× damage at 1/3 max HP or less.",
+    },
+    {
+      effect:
+        "Wenn ein Pokémon mit dieser Fähigkeit nur noch 1/3 seiner maximalen hp oder weniger hat, werden all seine grass Attacken verstärkt, so dass sie 1,5× so viel regular damage anrichten wie sonst.",
+      language: {
+        name: "de",
+        url: "https://pokeapi.co/api/v2/language/6/",
+      },
+      short_effect:
+        "Erhöht den Schaden von grass Attacken um 50% wenn nur noch 1/3 der maximalen hp oder weniger übrig sind.",
+    },
+  ],
+
+  id: 65,
+  is_main_series: true,
+  name: "overgrow",
+};
+
+const mockEffect = {
+  damage_relations: {
+    double_damage_from: [
+      {
+        name: "flying",
+        url: "https://pokeapi.co/api/v2/type/3/",
+      },
+      {
+        name: "poison",
+        url: "https://pokeapi.co/api/v2/type/4/",
+      },
+      {
+        name: "bug",
+        url: "https://pokeapi.co/api/v2/type/7/",
+      },
+      {
+        name: "fire",
+        url: "https://pokeapi.co/api/v2/type/10/",
+      },
+      {
+        name: "ice",
+        url: "https://pokeapi.co/api/v2/type/15/",
+      },
+    ],
+    double_damage_to: [
+      {
+        name: "ground",
+        url: "https://pokeapi.co/api/v2/type/5/",
+      },
+      {
+        name: "rock",
+        url: "https://pokeapi.co/api/v2/type/6/",
+      },
+      {
+        name: "water",
+        url: "https://pokeapi.co/api/v2/type/11/",
+      },
+    ],
+    half_damage_from: [
+      {
+        name: "ground",
+        url: "https://pokeapi.co/api/v2/type/5/",
+      },
+      {
+        name: "water",
+        url: "https://pokeapi.co/api/v2/type/11/",
+      },
+      {
+        name: "grass",
+        url: "https://pokeapi.co/api/v2/type/12/",
+      },
+      {
+        name: "electric",
+        url: "https://pokeapi.co/api/v2/type/13/",
+      },
+    ],
+    half_damage_to: [
+      {
+        name: "flying",
+        url: "https://pokeapi.co/api/v2/type/3/",
+      },
+      {
+        name: "poison",
+        url: "https://pokeapi.co/api/v2/type/4/",
+      },
+      {
+        name: "bug",
+        url: "https://pokeapi.co/api/v2/type/7/",
+      },
+      {
+        name: "steel",
+        url: "https://pokeapi.co/api/v2/type/9/",
+      },
+      {
+        name: "fire",
+        url: "https://pokeapi.co/api/v2/type/10/",
+      },
+      {
+        name: "grass",
+        url: "https://pokeapi.co/api/v2/type/12/",
+      },
+      {
+        name: "dragon",
+        url: "https://pokeapi.co/api/v2/type/16/",
+      },
+    ],
+    no_damage_from: [],
+    no_damage_to: [],
+  },
+  name: "grass",
+};
+
+module.exports.mockEffect = mockEffect;
+module.exports.mockAbility = mockAbility;
+module.exports.mockPokemonSearch = mockPokemonSearch;
 module.exports.mockPokemon = mockPokemon;
 module.exports.mockPokemonTypes = mockPokemonTypes;
 module.exports.mockTypes = mockTypes;

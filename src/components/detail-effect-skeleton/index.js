@@ -6,15 +6,17 @@ import { Container } from "./detailEffect.styles";
 
 export default function DetailEffectSkeleton() {
   return (
-    <SkeletonTheme baseColor="#151515" highlightColor="#444">
-      <Container>
-        <h1>
-          <Skeleton />
-        </h1>
-        <p>
-          <Skeleton />
-        </p>
-      </Container>
-    </SkeletonTheme>
+    <div data-testid="detail-effect-skeleton">
+      <SkeletonTheme baseColor="#151515" highlightColor="#444">
+        <Container>
+          <h1>
+            <Skeleton />
+          </h1>
+          <p>
+            <Skeleton />
+          </p>
+        </Container>
+      </SkeletonTheme>
+    </div>
   );
 }

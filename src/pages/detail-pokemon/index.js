@@ -31,25 +31,46 @@ export default function DetailPokemon() {
     <Layout title={`${textToCapitalize(pokemonId)}`}>
       {isLoading && <h2>Loading..</h2>}
       {isError && <h2>Something Wrong...</h2>}
-      <Wrapper>
-        <Image type="imageDetail" src={image} alt="pokemon" />
-        <div className="wrapper-content">
-          <h1>{textToCapitalize(payload?.name)}</h1>
-          <div className="wrapper-types-container">{types}</div>
-          <ListAbilities abilities={payload?.abilities} />
-        </div>
-      </Wrapper>
-      <Contents>
-        {/* left */}
-        <div>
-          <ListEffects effects={payload?.types} />
-        </div>
-        {/* right */}
-        <div>
-          <DetailStat stats={payload?.stats} />
-          <Species data={species} />
-        </div>
-      </Contents>
+      <HeaderContent
+        name={payload?.name}
+        image={image}
+        types={types}
+        abilities={payload?.abilities}
+      />
+      <BodyContent
+        types={payload?.types}
+        stats={payload?.stats}
+        species={species}
+      />
     </Layout>
   );
 }
+
+const HeaderContent = ({ name, image, types, abilities }) => {
+  return (
+    <Wrapper>
+      <Image type="imageDetail" src={image} alt="pokemon" />
+      <div className="wrapper-content">
+        <h1>{textToCapitalize(name)}</h1>
+        <div className="wrapper-types-container">{types}</div>
+        <ListAbilities abilities={abilities} />
+      </div>
+    </Wrapper>
+  );
+};
+
+const BodyContent = ({ types, stats, species }) => {
+  return (
+    <Contents>
+      {/* left */}
+      <div>
+        <ListEffects effects={types} />
+      </div>
+      {/* right */}
+      <div>
+        <DetailStat stats={stats} />
+        <Species data={species} />
+      </div>
+    </Contents>
+  );
+};

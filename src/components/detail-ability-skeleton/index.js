@@ -5,16 +5,18 @@ import { Title } from "./detailAbility.styles";
 
 export default function DetailAbilitySkeleton() {
   return (
-    <SkeletonTheme baseColor="#151515" highlightColor="#444">
-      <Title>
-        <Skeleton />
-      </Title>
-      <p>
-        <Skeleton />
-      </p>
-      <p>
-        <Skeleton />
-      </p>
-    </SkeletonTheme>
+    <div data-testid="detail-ability-skeleton">
+      <SkeletonTheme baseColor="#151515" highlightColor="#444">
+        <Title>
+          <Skeleton />
+        </Title>
+        <p>
+          <Skeleton />
+        </p>
+        <p>
+          <Skeleton />
+        </p>
+      </SkeletonTheme>
+    </div>
   );
 }

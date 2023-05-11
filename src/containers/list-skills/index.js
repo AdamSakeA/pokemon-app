@@ -1,6 +1,7 @@
 import { Container, SkillsContainer } from "./pokemonSkills.styles";
 import { Button } from "../../components";
 import { ResponsiveSkills } from "./responsive-skills";
+import { textToCapitalize } from "../../utils/settings";
 
 export default function ListSkills({ payload, type, setType, isLoading }) {
   // set type to null
@@ -13,7 +14,7 @@ export default function ListSkills({ payload, type, setType, isLoading }) {
   };
 
   return (
-    <SkillsContainer>
+    <SkillsContainer data-testid="skills-container">
       <SkillsContents
         payload={payload}
         type={type}
@@ -40,7 +41,7 @@ const SkillsContents = ({ payload, type, onClick, onClear, isLoading }) => {
     );
 
   return (
-    <Container>
+    <Container data-testid="list-skills">
       <Button
         type={type === "" ? "secondaryActive" : "secondary"}
         onClick={() => onClear()}
@@ -48,15 +49,17 @@ const SkillsContents = ({ payload, type, onClick, onClear, isLoading }) => {
         All
       </Button>
       {payload?.results.map((item, i) => {
-        const pokemonSkills =
-          item.name.charAt(0).toUpperCase() + item.name.slice(1);
+        const pokemonType = item.name;
+        const pokemonUrl = item.url;
+        const activeButton = type === pokemonType;
         return (
           <Button
-            type={type === item.name ? "secondaryActive" : "secondary"}
+            type={activeButton ? "secondaryActive" : "secondary"}
+            data-testid={`skill-${pokemonType}`}
             key={i}
-            onClick={() => onClick(item.name, item.url)}
+            onClick={() => onClick(pokemonType, pokemonUrl)}
           >
-            {pokemonSkills}
+            {textToCapitalize(pokemonType)}
           </Button>
         );
       })}

@@ -18,10 +18,14 @@ export default function PokeCards({ payload, isLoading, isNotFound }) {
   const image =
     !isNotFound &&
     imageLoader(payload?.sprites.other.dream_world.front_default);
+
   if (isLoading) return <PokeCardSkeleton />;
 
   return (
-    <CardContainer onClick={() => navigateToDetailPokemon(payload.name)}>
+    <CardContainer
+      data-testid="pokecard"
+      onClick={() => navigateToDetailPokemon(payload.name)}
+    >
       <motion.div
         whileHover={{ scale: 1.2 }}
         transition={{ type: "spring", stiffness: 400, damping: 10 }}

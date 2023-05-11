@@ -12,7 +12,9 @@ export default function DetailEffect({ data }) {
   return (
     <Container>
       <h1 className="title-effect">{textToCapitalize(data.name)}</h1>
-      <div className="content-container">{displayContent}</div>
+      <div className="content-container" data-testid="content-effect">
+        {displayContent}
+      </div>
       <hr />
     </Container>
   );

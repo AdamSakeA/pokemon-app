@@ -4,21 +4,17 @@ import ListPokedex from "../list-pokedex";
 
 export default function PaginationPokedex(props) {
   const { payload, fetchNextPage, isFetching } = props;
-
   const onScroll = () => {
     return !isFetching ? fetchNextPage() : null;
   };
-
-  const dataPokedex = payload?.map((item) =>
-    item.map((pokemon) => (
-      <ListPokedex name={pokemon.name} key={pokemon.name} />
-    ))
-  );
+  const dataPokedex = payload?.map((item) => {
+    return <ListPokedex name={item.name} key={item.name} />;
+  });
 
   return (
     <>
       {dataPokedex}
-      <div>
+      <div data-testid="waypoint">
         <Waypoint onEnter={onScroll} />
       </div>
     </>

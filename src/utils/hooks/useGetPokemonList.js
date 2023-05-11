@@ -24,7 +24,7 @@ export default function useGetPokemonList(queryKey = "Pokemon List") {
   const pages = data?.pages; // get pages from react query
   const pokemons = [];
   pages?.forEach((item) => {
-    pokemons.push([...item.results]);
+    pokemons.push(...item.results);
   });
 
   return {
